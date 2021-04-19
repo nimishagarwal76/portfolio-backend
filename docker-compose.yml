@@ -1,0 +1,15 @@
+version: "3"
+services:
+    backend:
+        container_name: plone-server
+        image: plone:5.2.4-python38
+        ports: 
+            - "8080:8080"
+        volumes: 
+            - ./plone-data:/data
+        environment: 
+            - SITE=Plone
+            - ADDONS=kitconcept.volto
+            - ZCML=kitconcept.volto.cors
+            - PROFILES=kitconcept.volto:default-homepage
+            - CORS_ALLOW_ORIGIN=*
