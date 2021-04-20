@@ -7,9 +7,17 @@ services:
             - "8080:8080"
         volumes: 
             - ./plone-data:/data
+        depends_on: 
+            - frontend
         environment: 
             - SITE=Plone
             - ADDONS=kitconcept.volto
             - ZCML=kitconcept.volto.cors
             - PROFILES=kitconcept.volto:default-homepage
             - CORS_ALLOW_ORIGIN=*
+    frontend:
+        container_name: plone-volto
+        ports: 
+            - "3000:3000"
+        build: 
+            context: ./portfolio
